@@ -1,0 +1,44 @@
+/* 
+ * General
+ */
+
+
+
+body {
+  background-color: #f4f4f4;
+  font-family: 'Open Sans', sans-serif;
+}
+
+
+
+
+/* 
+ * Header
+ */
+
+header {
+  background-color: #fff;
+  padding: 25px 0;
+}
+
+.title {
+  float: left;
+  font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-size: 17px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  margin: 0px 20px;
+}
+
+.title a, .title a:visited {
+  color: #3a3a3a;
+}
+
+.upload-image-thumb {
+  max-width: 800px;
+  margin: 100px;
+}
+.image-container {
+  margin: 0px auto;
+}
+
