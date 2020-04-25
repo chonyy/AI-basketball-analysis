@@ -1,12 +1,13 @@
 from flask import Flask, render_template, Response,  request, session, redirect, url_for, send_from_directory, flash
 from werkzeug.utils import secure_filename
 
+from PIL import Image
 import os
 import sys
 import cv2
 from app_helper import *
 
-app = Flask(__name__, static_url_path="")
+app = Flask(__name__)
 UPLOAD_FOLDER = './static/uploads'
 #DETECTION_FOLDER = '/home/shubham-sakha/project/Repo/custom_object/FLask/static/detections'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
