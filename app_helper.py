@@ -48,16 +48,6 @@ def detect(img):
             [boxes, scores, classes, num_detections],
             feed_dict={image_tensor: img_expanded})
 
-        # vis_util.visualize_boxes_and_labels_on_image_array(
-        #     img,
-        #     np.squeeze(boxes),
-        #     np.squeeze(classes).astype(np.int32),
-        #     np.squeeze(scores),
-        #     category_index,
-        #     # min_score_thresh=.95,
-        #     use_normalized_coordinates=True,
-        #     line_thickness=8)
-
         for i, box in enumerate(boxes[0]):
             # print("detect")
             if (scores[0][i] > 0.5):
@@ -80,7 +70,6 @@ def detect(img):
 def get_image(image_path, img_name):
     output_path = './static/detections/'
     # reading the images & apply detection with loaded weight file
-    print(image_path)
     image = cv2.imread(image_path)
     filename = img_name
     detection = detect(image)

@@ -42,3 +42,9 @@ header {
   margin: 0px auto;
 }
 
+.container {
+    width: 100vw;
+    height: 100vh;
+    background-color: #fff;
+}
+
