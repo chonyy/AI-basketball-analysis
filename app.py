@@ -44,24 +44,12 @@ def upload_video():
         session['video_path'] = filepath
         return render_template("shooting.html")
 
-
-def gen(video_path):
-    cap = cv2.VideoCapture(video_path)
-
-    while True:
-        ret, img = cap.read()
-        if ret == False:
-            break
-        img = cv2.resize(img, (0, 0), fx=0.8, fy=0.8)
-        frame = cv2.imencode('.jpg', img)[1].tobytes()
-        yield (b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
-        time.sleep(0.01)
-
 @app.route('/video_feed')
 def video_feed():
     video_path = session.get('video_path', None)
-    return Response(gen(video_path),
+    return Response(getVideoStream(video_path),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
+
 
 
 if __name__ == '__main__':
