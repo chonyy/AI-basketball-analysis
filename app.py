@@ -48,7 +48,6 @@ def upload_video():
 def video_feed():
     video_path = session.get('video_path', None)
     result = getVideoStream(video_path)
-    print("fuck")
     return Response(result,
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 
