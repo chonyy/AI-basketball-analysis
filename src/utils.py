@@ -43,9 +43,12 @@ def trajectory_fit(balls, height, width, shotJudgement):
         plt.plot(x_pos, y_pos, linestyle='-', color='green',
                  alpha=0.4, linewidth=5)
 
+
     plt.title("Trajectory Fitting")
     plt.ylim(bottom=0)
-    plt.savefig(".././static/detections/trajectory.jpg")
+    trajectory_path = os.path.join(
+        os.getcwd(), "static/detections/trajectory_fitting.jpg")
+    plt.savefig(trajectory_path)
 
 
 def distance(xCoor, yCoor, prev_ball):

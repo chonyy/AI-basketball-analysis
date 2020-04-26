@@ -69,7 +69,8 @@ def getVideoStream(video_path):
                 frame = cv2.imencode('.jpg', detection)[1].tobytes()
                 result = (b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
                 yield result
-    cv2.imwrite(".././static/detections/trace.jpg", trace)
+    trace_path = os.path.join(os.getcwd(), "static/detections/basketball_trace.jpg")
+    cv2.imwrite(trace_path, trace)
 
 def get_image(image_path, img_name):
     output_path = './static/detections/'
