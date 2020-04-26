@@ -149,23 +149,7 @@ def detect_shot(frame, trace, width, height, sess, image_tensor, boxes, scores, 
 
 def detect_image(img):
     height, width = img.shape[:2]
-
-    MODEL_NAME = 'inference_graph'
-    PATH_TO_CKPT = MODEL_NAME + '/frozen_inference_graph.pb'
-
-    detection_graph = tf.Graph()
-    with detection_graph.as_default():
-        od_graph_def = tf.GraphDef()
-        with tf.gfile.GFile(PATH_TO_CKPT, 'rb') as fid:
-            serialized_graph = fid.read()
-            od_graph_def.ParseFromString(serialized_graph)
-            tf.import_graph_def(od_graph_def, name='')
-
-    image_tensor = detection_graph.get_tensor_by_name('image_tensor:0')
-    boxes = detection_graph.get_tensor_by_name('detection_boxes:0')
-    scores = detection_graph.get_tensor_by_name('detection_scores:0')
-    classes = detection_graph.get_tensor_by_name('detection_classes:0')
-    num_detections = detection_graph.get_tensor_by_name('num_detections:0')
+    detection_graph, image_tensor, boxes, scores, classes, num_detections = tensorflow_init()
 
     with tf.Session(graph=detection_graph) as sess:
         img_expanded = np.expand_dims(img, axis=0)
@@ -193,3 +177,59 @@ def detect_image(img):
                     cv2.putText(img, "HOOP", (xCoor - 65, yCoor - 65),
                                 cv2.FONT_HERSHEY_COMPLEX, 3, (48, 124, 255), 8)
     return img
+
+def detect_API(response, img):
+    height, width = img.shape[:2]
+    detection_graph, image_tensor, boxes, scores, classes, num_detections = tensorflow_init()
+
+    with tf.Session(graph=detection_graph) as sess:
+        img_expanded = np.expand_dims(img, axis=0)
+        (boxes, scores, classes, num_detections) = sess.run(
+            [boxes, scores, classes, num_detections],
+            feed_dict={image_tensor: img_expanded})
+
+        for i, box in enumerate(boxes[0]):
+            if (scores[0][i] > 0.5):
+                ymin = int((box[0] * height))
+                xmin = int((box[1] * width))
+                ymax = int((box[2] * height))
+                xmax = int((box[3] * width))
+                xCoor = int(np.mean([xmin, xmax]))
+                yCoor = int(np.mean([ymin, ymax]))
+                if(classes[0][i] == 1):  # basketball
+                    response.append({
+                        'class': 'Basketball',
+                        'detection_detail': {
+                            'confidence': float(scores[0][i]),
+                            'center_coordinate': {'x': xCoor, 'y': yCoor},
+                            'box_boundary': {'x_min': xmin, 'x_max': xmax, 'y_min': ymin, 'y_max': ymax}
+                        }
+                    })
+                if(classes[0][i] == 2):  # Rim
+                    response.append({
+                        'class': 'Hoop',
+                        'detection_detail': {
+                            'confidence': float(scores[0][i]),
+                            'center_coordinate': {'x': xCoor, 'y': yCoor},
+                            'box_boundary': {'x_min': xmin, 'x_max': xmax, 'y_min': ymin, 'y_max': ymax}
+                        }
+                    })
+
+def tensorflow_init():
+    MODEL_NAME = 'inference_graph'
+    PATH_TO_CKPT = MODEL_NAME + '/frozen_inference_graph.pb'
+
+    detection_graph = tf.Graph()
+    with detection_graph.as_default():
+        od_graph_def = tf.GraphDef()
+        with tf.gfile.GFile(PATH_TO_CKPT, 'rb') as fid:
+            serialized_graph = fid.read()
+            od_graph_def.ParseFromString(serialized_graph)
+            tf.import_graph_def(od_graph_def, name='')
+
+    image_tensor = detection_graph.get_tensor_by_name('image_tensor:0')
+    boxes = detection_graph.get_tensor_by_name('detection_boxes:0')
+    scores = detection_graph.get_tensor_by_name('detection_scores:0')
+    classes = detection_graph.get_tensor_by_name('detection_classes:0')
+    num_detections = detection_graph.get_tensor_by_name('num_detections:0')
+    return detection_graph, image_tensor, boxes, scores, classes, num_detections

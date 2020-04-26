@@ -19,7 +19,26 @@ app.secret_key = "super secret key"
 def index():
     return render_template("index.html")
 
-@app.route('/find_basketball', methods=['GET', 'POST'])
+@app.route('/detection_json', methods=['GET', 'POST'])
+def detection_json():
+    if request.method == 'POST':
+        response = []
+        f = request.files['image']
+        # create a secure filename
+        filename = secure_filename(f.filename)
+        print("filename", filename)
+        # save file to /static/uploads
+        filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        print("filepath", filepath)
+        f.save(filepath)
+        detectionAPI(response, filepath)
+        print(response)
+        try:
+            return jsonify(response), 200
+        except FileNotFoundError:
+            abort(404)
+
+@app.route('/basketball_detection', methods=['GET', 'POST'])
 def upload_image():
     if request.method == 'POST':
         f = request.files['image']
