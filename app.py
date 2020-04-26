@@ -5,6 +5,7 @@ from PIL import Image
 import os
 import sys
 import cv2
+from config import shooting_result
 from app_helper import *
 
 app = Flask(__name__)
@@ -32,6 +33,7 @@ def upload_image():
 
 @app.route('/shooting_analysis', methods=['GET', 'POST'])
 def upload_video():
+    global shooting_result
     if request.method == 'POST':
         f = request.files['video']
         # create a secure filename
@@ -42,15 +44,24 @@ def upload_video():
         print("filepath", filepath)
         f.save(filepath)
         session['video_path'] = filepath
-        return render_template("shooting.html")
+        return render_template("shooting.html", result="from initial")
 
 @app.route('/video_feed')
 def video_feed():
     video_path = session.get('video_path', None)
-    result = getVideoStream(video_path)
-    return Response(result,
+    session['result'] = "fuck"
+    stream = getVideoStream(video_path)
+    return Response(stream,
                     mimetype='multipart/x-mixed-replace; boundary=frame')
+    return render_template("shooting.html", result="shit")
 
+@app.context_processor
+def context_processor():
+    return dict(result="from processor")
+
+@app.route("/result", methods=['GET', 'POST'])
+def result():
+    return render_template("result.html", shot=shooting_result['shot'], made=shooting_result['made'], miss=shooting_result['miss'])
 
 
 if __name__ == '__main__':

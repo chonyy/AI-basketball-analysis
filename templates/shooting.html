@@ -7,7 +7,12 @@
             <p class="text-center"><b>Detected Image</b></p>
             <img src="{{ url_for('video_feed') }}">
         </div>
-        <p class="text-center">Result: {{result}}</p>
+        <p class="text-center">Result: {{ result }}</p>
+    </div>
+    <div class="upload-form">
+        <form action="/result" method="POST">
+            <input type="submit" />
+        </form>
     </div>
 </div>
 {% endblock %}

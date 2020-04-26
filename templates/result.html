@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<center>
+    <p class="text">Object Detection</p>
+    <p>Upload an image to see object detection
+        <div class="result">
+            <p>shot {{ shot }}</p>
+            <p>made {{ made }}</p>
+            <p>miss {{ miss }}</p>
+            <a href="/static/detections/trace.jpg" target="_new"><img
+                    src="/static/detections/trace.jpg" class="upload-image-thumb"></a>
+            <a href="/static/detections/trajectory.jpg" target="_new"><img
+                    src="/static/detections/trajectory.jpg" class="upload-image-thumb"></a>
+        </div>
+</center>
+{% endblock %}
