@@ -11,7 +11,7 @@ from sys import platform
 import argparse
 import matplotlib.pyplot as plt
 from scipy.optimize import curve_fit
-from .utils import detect_shot, detect_image, detect_API
+from .utils import detect_shot, detect_image, detect_API, tensorflow_init
 tf.disable_v2_behavior()
 
 def getVideoStream(video_path):
@@ -58,12 +58,12 @@ def getVideoStream(video_path):
     trace_path = os.path.join(os.getcwd(), "static/detections/basketball_trace.jpg")
     cv2.imwrite(trace_path, trace)
 
-def get_image(image_path, img_name):
+def get_image(image_path, img_name, response):
     output_path = './static/detections/'
     # reading the images & apply detection 
     image = cv2.imread(image_path)
     filename = img_name
-    detection = detect_image(image)
+    detection = detect_image(image, response)
 
     cv2.imwrite(output_path + '{}' .format(filename), detection)
     print('output saved to: {}'.format(output_path + '{}'.format(filename)))

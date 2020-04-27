@@ -147,7 +147,7 @@ def detect_shot(frame, trace, width, height, sess, image_tensor, boxes, scores, 
     return combined, trace
 
 
-def detect_image(img):
+def detect_image(img, response):
     height, width = img.shape[:2]
     detection_graph, image_tensor, boxes, scores, classes, num_detections = tensorflow_init()
 
@@ -171,11 +171,29 @@ def detect_image(img):
                                color=(255, 0, 0), thickness=-1)
                     cv2.putText(img, "BALL", (xCoor - 50, yCoor - 50),
                                 cv2.FONT_HERSHEY_COMPLEX, 3, (255, 0, 0), 8)
+                    print("add basketball")
+                    response.append({
+                        'class': 'Basketball',
+                        'detection_detail': {
+                            'confidence': float("{:.5f}".format(scores[0][i])),
+                            'center_coordinate': {'x': xCoor, 'y': yCoor},
+                            'box_boundary': {'x_min': xmin, 'x_max': xmax, 'y_min': ymin, 'y_max': ymax}
+                        }
+                    })
                 if(classes[0][i] == 2):  # Rim
                     cv2.rectangle(img, (xmin, ymax),
                                   (xmax, ymin), (48, 124, 255), 10)
                     cv2.putText(img, "HOOP", (xCoor - 65, yCoor - 65),
                                 cv2.FONT_HERSHEY_COMPLEX, 3, (48, 124, 255), 8)
+                    print("add hoop")
+                    response.append({
+                        'class': 'Hoop',
+                        'detection_detail': {
+                            'confidence': float("{:.5f}".format(scores[0][i])),
+                            'center_coordinate': {'x': xCoor, 'y': yCoor},
+                            'box_boundary': {'x_min': xmin, 'x_max': xmax, 'y_min': ymin, 'y_max': ymax}
+                        }
+                    })
     return img
 
 def detect_API(response, img):

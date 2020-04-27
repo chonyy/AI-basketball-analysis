@@ -1,21 +1,54 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<center>
-    <p class="text">Object Detection</p>
-    <p>Upload an image to see object detection
-    <div class="upload-form">
-      <form action = "/basketball_detection" method = "POST" 
-        enctype = "multipart/form-data">
-        <input type = "file" name = "image" />
-        <input type = "submit"/>
-      </form>
+    <div class="landing-container">
+        <div class="main-container">
+            <div class="titleandbutton">
+                <div class="title">AI Basketball</div>
+                <div class="titleinfo">Analyze basketball shot with machine learning</div>
+                <div class="upload-form">
+                    <form action="/basketball_detection" method="POST" enctype="multipart/form-data">
+                        <input class="mainbutton" type="file" name="image" />
+                        <input class="samplebutton" type="submit" />
+                    </form>
+                </div>
+                <div class="upload-form">
+                    <form action="/shooting_analysis" method="POST" enctype="multipart/form-data">
+                        <input type="file" name="video" />
+                        <input type="submit" />
+                    </form>
+                </div>
+            </div>
+            <div class="image-container">
+                <div class="demo-image mobile-hidden">
+                    <img src="img/demo1.PNG">
+                </div>
+                <div class="demo-image mobile-hidden">
+                    <img src="img/demo2.PNG">
+                </div>
+                <div class="demo-image mobile-show demo-mobile">
+                    <img src="img/demo-mobile.PNG">
+                </div>
+            </div>
+        </div>
+        <div class="wave-button"></div>
+        <div class="features-container">
+            <div class="feature-row">
+                <div class="big-feature">
+                    <div class="feature-text">Shooting analysis</div>
+                    <div class="feature-iamge"></div>
+                </div>
+            </div>
+            <div class="feature-row">
+                <div class="small-feature">
+                    <div class="feature-text">Basketball and Hoop detection</div>
+                    <div class="feature-iamge"></div>
+                </div>
+                <div class="small-feature">
+                    <div class="feature-text">Detection API call</div>
+                    <div class="feature-iamge"></div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="upload-form">
-        <form action="/shooting_analysis" method="POST" enctype="multipart/form-data">
-            <input type="file" name="video" />
-            <input type="submit" />
-        </form>
-    </div>
-</center> 
 {% endblock %}

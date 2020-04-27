@@ -41,6 +41,7 @@ def detection_json():
 @app.route('/basketball_detection', methods=['GET', 'POST'])
 def upload_image():
     if request.method == 'POST':
+        response = []
         f = request.files['image']
         # create a secure filename
         filename = secure_filename(f.filename)
@@ -49,8 +50,8 @@ def upload_image():
         filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         print("filepath", filepath)
         f.save(filepath)
-        get_image(filepath, filename)
-        return render_template("uploaded.html", display_detection=filename, fname=filename)
+        get_image(filepath, filename, response)
+        return render_template("uploaded.html", display_detection=filename, fname=filename, response=response)
 
 @app.route('/shooting_analysis', methods=['GET', 'POST'])
 def upload_video():
