@@ -59,7 +59,7 @@ This project has three main features, [shot analysis](shot-analysis), [shot dete
 </p>
 
 Counting shooting attempts and missing, scoring shots from the input video.
-Detection keypoints in different colors have different meaning listed below:
+Detection keypoints in different colors have different meanings listed below:
 * **Blue:** Detected basketball in normal status
 * **Purple**: Undetermined shot
 * **Green:** Shot went in
@@ -80,7 +80,7 @@ Detection will be shown on the image. The confidence and the coordinate of the d
     <img src="./static/img/API.PNG" width="861.6" height="649.6">
 </p>
 
-Get the JSON response by submitting a **POST** request to (https://ai-basketball-analysis.herokuapp.com/detection_json/) with "image" as KEY and input image as VALUE.
+Get the JSON response by submitting a **POST** request to (./detection_json/) with "image" as KEY and input image as VALUE.
 
 ## Detection model
 
