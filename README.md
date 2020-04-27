@@ -14,7 +14,7 @@
 
 > 🏀 Analyze basketball shots with machine learning!
 
-This is an artificial intelligence application built on the concept of object detection. Analyze basketball shots by digging into the data collected from object detection. We can get the result by simply uploading files to the web App, or submitting a **POST request** to the API. Please check the [features](#features) below.
+This is an artificial intelligence application built on the concept of **object detection**. Analyze basketball shots by digging into the data collected from object detection. We can get the result by simply uploading files to the web App, or submitting a **POST request** to the API. Please check the [features](#features) below.
 
 ## Getting Started
 
@@ -50,7 +50,7 @@ This project is also hosted on [Heroku](https://ai-basketball-analysis.herokuapp
 
 ## Features
 
-This project has three main features, shot analysis, shot detection, detection API.
+This project has three main features, [shot analysis](shot-analysis), [shot detection](shot-detection), [detection API](detection-api).
 
 ### Shot analysis
 
@@ -58,6 +58,8 @@ This project has three main features, shot analysis, shot detection, detection A
     <img src="./static/img/analysis_result.PNG">
 </p>
 
+Counting shooting attempts and missing, scoring shots from the input video.
+Detection keypoints in different colors have different meaning listed below:
 * **Blue:** Detected basketball in normal status
 * **Purple**: Undetermined shot
 * **Green:** Shot went in
@@ -75,15 +77,15 @@ Detection will be shown on the image. The confidence and the coordinate of the d
 ### Detection API
 
 <p align=center>
-    <img src="./static/img/API.PNG">
+    <img src="./static/img/API.PNG" width="861.6" height="649.6">
 </p>
 
-Get the JSON response by submitting a POST request with "image" as the key and input image as the value.
+Get the JSON response by submitting a **POST** request to (https://ai-basketball-analysis.herokuapp.com/detection_json/) with "image" as KEY and input image as VALUE.
 
 ## Detection model
 
 <p align=center>
-    <img src="https://jkjung-avt.github.io/assets/2018-03-30-making-frcn-faster/FRCN_architecture.png">
+    <img src="https://jkjung-avt.github.io/assets/2018-03-30-making-frcn-faster/FRCN_architecture.png" width="558" height="560.5">
 </p>
 
 The object detection model is trained with the [Faster R-CNN model architecture](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md#coco-trained-models), which includes pretrained weight on COCO dataset. Taking the configuration from the model architecture and train it on my own dataset.
