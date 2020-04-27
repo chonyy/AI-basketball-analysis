@@ -13,3 +13,82 @@
 </p>
 
 > 🏀 Analyze basketball shots with machine learning!
+
+This is an artificial intelligence application built on the concept of object detection. Analyze basketball shots by digging into the data collected from object detection. We can get the result by simply uploading files to the web App, or submitting a **POST request** to the API.
+
+## Getting Started
+
+These instructions will get you a copy of the project up and running on your local machine.
+
+### Get a copy
+
+Get a copy of this project by simply running the git clone command.
+
+``` git
+git clone https://github.com/chonyy/AI-basketball-analysis.git
+```
+
+### Prerequisites
+
+Before running the project, we have to install all the dependencies from requirements.txt
+
+``` pip
+pip install -r requirements.txt
+```
+
+### Hosting
+
+Last, get the project hosted on your local machine with a single command.
+
+``` python
+python app.py
+```
+
+#### Alternatives
+
+This project is also hosted on [Heroku](https://ai-basketball-analysis.herokuapp.com/). However, the heavy computation of TensorFlow may cause Timeout error and crash the app. Therefore, hosting the project on your local machine is more preferable.
+
+## Features
+
+This project has three main features, shot analysis, shot detection, detection API.
+
+### Shot analysis
+
+<p align=center>
+    <img src="./static/img/analysis_result.PNG">
+</p>
+
+* **Blue:** Detected basketball in normal status
+* **Purple**: Undetermined shot
+* **Green:** Shot went in
+* **Red:** Miss
+
+
+### Shot detection
+
+<p align=center>
+    <img src="./static/img/detection.PNG">
+</p>
+
+Detection will be shown on the image. The confidence and the coordinate of the detection will be listed below.
+
+### Detection API
+
+<p align=center>
+    <img src="./static/img/API.PNG">
+</p>
+
+Get the JSON response by submitting a POST request with "image" as the key and input image as the value.
+
+## Detection model
+
+<p align=center>
+    <img src="https://jkjung-avt.github.io/assets/2018-03-30-making-frcn-faster/FRCN_architecture.png">
+</p>
+
+The object detection model is trained with the [Faster R-CNN model architecture](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md#coco-trained-models), which includes pretrained weight on COCO dataset. Taking the configuration from the model architecture and train it on my own dataset.
+
+
+## Future plans
+1. Host it on azure web app service.
+2. Improve the efficiency, making it executable on web app services.
