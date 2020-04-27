@@ -46,7 +46,7 @@ python app.py
 
 #### Alternatives
 
-This project is also hosted on [Heroku](https://ai-basketball-analysis.herokuapp.com/). However, the heavy computation of TensorFlow may cause Timeout error and crash the app. Therefore, hosting the project on your local machine is more preferable.
+This project is also hosted on [Heroku](https://ai-basketball-analysis.herokuapp.com/). However, the heavy computation of TensorFlow may cause Timeout error and crash the app (especially for video analysis). Therefore, hosting the project on your local machine is more preferable.
 
 ## Features
 

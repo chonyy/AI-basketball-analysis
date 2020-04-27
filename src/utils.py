@@ -18,7 +18,7 @@ def fit_func(x, a, b, c):
     return a*(x ** 2) + b * x + c
 
 
-def trajectory_fit(balls, height, width, shotJudgement):
+def trajectory_fit(balls, height, width, shotJudgement, fig):
     x = []
     y = []
     for ball in balls:
@@ -35,27 +35,21 @@ def trajectory_fit(balls, height, width, shotJudgement):
         y_pos.append(y_val)
 
     if(shotJudgement == "MISS"):
-        plt.plot(x, y, 'ro')
+        plt.plot(x, y, 'ro', figure=fig)
         plt.plot(x_pos, y_pos, linestyle='-', color='red',
-                 alpha=0.4, linewidth=5)
+                 alpha=0.4, linewidth=5, figure=fig)
     else:
-        plt.plot(x, y, 'go')
+        plt.plot(x, y, 'go', figure=fig)
         plt.plot(x_pos, y_pos, linestyle='-', color='green',
-                 alpha=0.4, linewidth=5)
+                 alpha=0.4, linewidth=5, figure=fig)
 
-
-    plt.title("Trajectory Fitting")
-    plt.ylim(bottom=0)
-    trajectory_path = os.path.join(
-        os.getcwd(), "static/detections/trajectory_fitting.jpg")
-    plt.savefig(trajectory_path)
 
 
 def distance(xCoor, yCoor, prev_ball):
     return ((prev_ball[0] - xCoor) ** 2 + (prev_ball[1] - yCoor) ** 2) ** (1/2)
 
 
-def detect_shot(frame, trace, width, height, sess, image_tensor, boxes, scores, classes, num_detections, previous, during_shooting, shot_result):
+def detect_shot(frame, trace, width, height, sess, image_tensor, boxes, scores, classes, num_detections, previous, during_shooting, shot_result, fig):
     global shooting_result
     if(shot_result['displayFrames'] > 0):
         shot_result['displayFrames'] -= 1
@@ -109,7 +103,7 @@ def detect_shot(frame, trace, width, height, sess, image_tensor, boxes, scores, 
                                 cv2.circle(img=trace, center=(ballCoor[0], ballCoor[1]), radius=10,
                                            color=(0, 0, 255), thickness=-1)
                         trajectory_fit(
-                            during_shooting['balls_during_shooting'], height, width, shot_result['judgement'])
+                            during_shooting['balls_during_shooting'], height, width, shot_result['judgement'], fig)
                         during_shooting['balls_during_shooting'].clear()
                         during_shooting['isShooting'] = False
 

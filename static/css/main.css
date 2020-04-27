@@ -195,6 +195,7 @@ nav .navbar-nav li a {
 
 .image-stat {
     margin-top: 2vw;
+    margin-bottom: 1vw;
     display: flex;
     flex-direction: row;
     width: 100%;

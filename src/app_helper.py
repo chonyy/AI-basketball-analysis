@@ -23,6 +23,7 @@ def getVideoStream(video_path):
     trace = np.full((int(height), int(width), 3), 255, np.uint8)
 
     #objects to store detection status
+    fig = plt.figure()
     previous = {
         'ball': np.array([0, 0]), #x, y
         'hoop': np.array([0, 0, 0, 0]), #xmin, ymax, xmax, ymin
@@ -49,12 +50,19 @@ def getVideoStream(video_path):
                 if ret == False:
                     break
                 detection, trace = detect_shot(img, trace, width, height, sess, image_tensor, boxes, scores, classes,
-                                          num_detections, previous, during_shooting, shot_result)
+                                          num_detections, previous, during_shooting, shot_result, fig)
 
                 detection = cv2.resize(detection, (0, 0), fx=0.8, fy=0.8)
                 frame = cv2.imencode('.jpg', detection)[1].tobytes()
                 result = (b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
                 yield result
+
+    plt.title("Trajectory Fitting", figure=fig)
+    plt.ylim(bottom=0)
+    trajectory_path = os.path.join(
+        os.getcwd(), "static/detections/trajectory_fitting.jpg")
+    fig.savefig(trajectory_path)
+    fig.clear()
     trace_path = os.path.join(os.getcwd(), "static/detections/basketball_trace.jpg")
     cv2.imwrite(trace_path, trace)
 
