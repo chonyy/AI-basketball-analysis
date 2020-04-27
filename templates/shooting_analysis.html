@@ -16,13 +16,21 @@
         </div>
         <img src="{{ url_for('video_feed') }}">
     </div>
-    <div class="upload-form">
-        <form action="/result" method="POST">
-            <button class="submit-button" type="submit">
-                <div>Result ></div>
-                <div class="hint">(Wait till ending)</div>
-            </button>
-        </form>
+    <div class="legend-container">
+        <div class="legend">
+            <div class="color-legend blue">Blue: Detected basketball in normal status</div>
+            <div class="color-legend purple">Purple: Undetermined shot</div>
+            <div class="color-legend green">Green: Shot went in</div>
+            <div class="color-legend red">Red: Miss</div>
+        </div>
+        <div class="upload-form">
+            <form action="/result" method="POST">
+                <button class="submit-button move-left" type="submit">
+                    <div>Result ></div>
+                    <div class="hint">(Wait till ending)</div>
+                </button>
+            </form>
+        </div>
     </div>
 </div>
 {% endblock %}

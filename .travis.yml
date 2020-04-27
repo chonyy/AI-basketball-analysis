@@ -1,2 +1,2 @@
 language: python
-script: python src/utils.py
+script: python src/config.py

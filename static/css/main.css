@@ -387,3 +387,36 @@ button {
 .disable-animation {
     animation: none;
 }
+
+.legend-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.color-legend {
+    font-size: 1.5vw;
+    font-weight: 600;
+}
+
+.blue {
+    color: blue;
+}
+
+.purple {
+    color: purple;
+}
+
+.green {
+    color: green;
+}
+
+.red {
+    color: red;
+}
+
+.move-left {
+    margin-left: -15vw;
+}
