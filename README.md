@@ -80,7 +80,7 @@ Detection will be shown on the image. The confidence and the coordinate of the d
     <img src="./static/img/API.PNG" width="861.6" height="649.6">
 </p>
 
-Get the JSON response by submitting a **POST** request to (./detection_json/) with "image" as KEY and input image as VALUE.
+Get the JSON response by submitting a **POST** request to (./detection_json) with "image" as KEY and input image as VALUE.
 
 ## Detection model
 
