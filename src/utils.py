@@ -80,6 +80,7 @@ def detect_shot(frame, trace, width, height, sess, image_tensor, boxes, scores, 
                     during_shooting['balls_during_shooting'].append(
                         [xCoor, yCoor])
 
+                    #draw purple circle
                     cv2.circle(img=frame, center=(xCoor, yCoor), radius=10,
                                color=(235, 103, 193), thickness=-1)
                     cv2.circle(img=trace, center=(xCoor, yCoor), radius=10,
@@ -92,16 +93,16 @@ def detect_shot(frame, trace, width, height, sess, image_tensor, boxes, scores, 
                         if(xCoor >= previous['hoop'][0] and xCoor <= previous['hoop'][2]):  # shot
                             shooting_result['attempts'] += 1
                             shooting_result['made'] += 1
-                            shot_result['displayFrames'] = 6
-                            shot_result['judgement'] = "SHOT"
-                            print("shot")
+                            shot_result['displayFrames'] = 10
+                            shot_result['judgement'] = "SCORE"
+                            print("SCORE")
                             for ballCoor in during_shooting['balls_during_shooting']:
                                 cv2.circle(img=trace, center=(ballCoor[0], ballCoor[1]), radius=10,
                                            color=(82, 168, 50), thickness=-1)
                         else:  # miss
                             shooting_result['attempts'] += 1
                             shooting_result['miss'] += 1
-                            shot_result['displayFrames'] = 6
+                            shot_result['displayFrames'] = 10
                             shot_result['judgement'] = "MISS"
                             print("miss")
                             for ballCoor in during_shooting['balls_during_shooting']:
@@ -112,6 +113,7 @@ def detect_shot(frame, trace, width, height, sess, image_tensor, boxes, scores, 
                         during_shooting['balls_during_shooting'].clear()
                         during_shooting['isShooting'] = False
 
+                    #draw blue circle
                     cv2.circle(img=frame, center=(xCoor, yCoor), radius=10,
                                color=(255, 0, 0), thickness=-1)
                     cv2.circle(img=trace, center=(xCoor, yCoor), radius=10,

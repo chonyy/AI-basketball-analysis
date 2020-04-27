@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="result-title">Shot Analysis</div>
+<div class="shooting-container">
+    <div class="video-container">
+        <div class="video-description">
+            <div class="description-container">
+                <div class="stat-name padding-right">Analysis</div>
+                <div class="underline video-underline"></div>
+            </div>
+            <div class="description-container right-description">
+                <div class="stat-name padding-right">Tracing</div>
+                <div class="underline video-underline"></div>
+            </div>
+        </div>
+        <img src="{{ url_for('video_feed') }}">
+    </div>
+    <div class="upload-form">
+        <form action="/result" method="POST">
+            <button class="submit-button" type="submit">
+                <div>Result ></div>
+                <div class="hint">(Wait until ending)</div>
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}

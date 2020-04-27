@@ -1,17 +1,56 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<center>
-    <p class="text">Object Detection</p>
-    <p>Upload an image to see object detection
-        <div class="result">
-            <p>shot {{ shot }}</p>
-            <p>made {{ made }}</p>
-            <p>miss {{ miss }}</p>
+<div class="result-container">
+    <div class="result-title">Analysis Result</div>
+    <div class="shot-container">
+        <div class="shot-counting">
+            <div class="image-description">
+                <div class="stat-name">Shot Counting</div>
+                <div class="underline"></div>
+            </div>
+            <div class="stat-container small-stat">
+                <div class="stat-item">
+                    <div class="statname-container">
+                        <div class="stat-name padding-right">Attempts</div>
+                        <div class="underline video-underline"></div>
+                    </div>
+                    <div class="stat-num" stat-day>{{ attempts }}</div>
+                </div>
+                <div class="stat-item">
+                    <div class="statname-container">
+                        <div class="stat-name padding-right">Miss</div>
+                        <div class="underline video-underline"></div>
+                    </div>
+                    <div class="stat-num" stat-message>{{ miss }}</div>
+                </div>
+                <div class="stat-item">
+                    <div class="statname-container">
+                        <div class="stat-name padding-right">Score</div>
+                        <div class="underline video-underline"></div>
+                    </div>
+                    <div class="stat-num" stat-call>{{ made }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="image-container">
+            <div class="image-description">
+                <div class="stat-name">Tracing Result</div>
+                <div class="underline"></div>
+            </div>
             <a href="/static/detections/basketball_trace.jpg" target="_new"><img
                     src="/static/detections/basketball_trace.jpg" class="upload-image-thumb"></a>
+        </div>
+        <div class="image-container">
+            <div class="image-description">
+                <div class="stat-name">Trajectory Fitting</div>
+                <div class="underline trajectory-underline"></div>
+            </div>
             <a href="/static/detections/trajectory_fitting.jpg" target="_new"><img
                     src="/static/detections/trajectory_fitting.jpg" class="upload-image-thumb"></a>
         </div>
-</center>
+    </div>
+</div>
 {% endblock %}

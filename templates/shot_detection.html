@@ -1,0 +1,75 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="result-title">Shot detection</div>
+<div class="comparison">
+    <div class="image-container">
+        <div class="image-description">
+            <div class="stat-name">Original</div>
+            <div class="underline"></div>
+        </div>
+        <a href="/static/uploads/{{ fname }}" target="_new"><img src="/static/uploads/{{ fname }}"
+                class="upload-image-thumb"></a>
+    </div>
+    <div class="image-container">
+        <div class="image-description">
+            <div class="stat-name">Detection</div>
+            <div class="underline"></div>
+        </div>
+        <a href="/static/detections/{{display_detection}}" target="_new"><img
+                src="/static/detections/{{display_detection}}" class="upload-image-thumb"></a>
+    </div>
+</div>
+<div class="image-stat">
+    <div class="stat-container">
+        <div class="stat-item">
+            <div class="statname-container">
+                <div class="stat-name">Class</div>
+                <div class="underline image-underline"></div>
+            </div>
+            <div class="stat-num" stat-day>{{ response[0]['class'] }}</div>
+        </div>
+        <div class="stat-item">
+            <div class="statname-container">
+                <div class="stat-name">Confidence</div>
+                <div class="underline image-underline"></div>
+            </div>
+            <div class="stat-num" stat-message>{{ response[0]['detection_detail']['confidence'] }}</div>
+        </div>
+        <div class="stat-item">
+            <div class="statname-container">
+                <div class="stat-name">Coordinate</div>
+                <div class="underline image-underline"></div>
+            </div>
+            <div class="stat-num" stat-call>({{ response[0]['detection_detail']['center_coordinate']['x'] }},
+                {{ response[0]['detection_detail']['center_coordinate']['y'] }})</div>
+        </div>
+    </div>
+    <div class="stat-container">
+        <div class="stat-item">
+            <div class="statname-container">
+                <div class="stat-name">Class</div>
+                <div class="underline image-underline"></div>
+            </div>
+            <div class="stat-num" stat-day>{{ response[1]['class'] }}</div>
+        </div>
+        <div class="stat-item">
+            <div class="statname-container">
+                <div class="stat-name">Confidence</div>
+                <div class="underline image-underline"></div>
+            </div>
+            <div class="stat-num" stat-message>{{ response[1]['detection_detail']['confidence'] }}</div>
+        </div>
+        <div class="stat-item">
+            <div class="statname-container">
+                <div class="stat-name">Coordinate</div>
+                <div class="underline image-underline"></div>
+            </div>
+            <div class="stat-num" stat-call>({{ response[1]['detection_detail']['center_coordinate']['x'] }},
+                {{ response[1]['detection_detail']['center_coordinate']['y'] }})</div>
+        </div>
+    </div>
+</div>
+
+{% endblock %} 
+

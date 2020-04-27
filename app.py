@@ -38,6 +38,18 @@ def detection_json():
         except FileNotFoundError:
             abort(404)
 
+
+@app.route('/sample_detection', methods=['GET', 'POST'])
+def upload_sample_image():
+    if request.method == 'POST':
+        response = []
+        filename = "sample_image.jpg"
+        print("filename", filename)
+        filepath = "./static/uploads/sample_image.jpg"
+        print("filepath", filepath)
+        get_image(filepath, filename, response)
+        return render_template("shot_detection.html", display_detection=filename, fname=filename, response=response)
+
 @app.route('/basketball_detection', methods=['GET', 'POST'])
 def upload_image():
     if request.method == 'POST':
@@ -51,10 +63,24 @@ def upload_image():
         print("filepath", filepath)
         f.save(filepath)
         get_image(filepath, filename, response)
-        return render_template("uploaded.html", display_detection=filename, fname=filename, response=response)
+        return render_template("shot_detection.html", display_detection=filename, fname=filename, response=response)
+
+@app.route('/sample_analysis', methods=['GET', 'POST'])
+def upload_video():
+    global shooting_result
+    shooting_result['attempts'] = 0
+    shooting_result['made'] = 0
+    shooting_result['miss'] = 0
+    if request.method == 'POST':
+        filename = "sample_video.mp4"
+        print("filename", filename)
+        filepath = "./static/uploads/sample_video.mp4"
+        print("filepath", filepath)
+        session['video_path'] = filepath
+        return render_template("shooting_analysis.html")
 
 @app.route('/shooting_analysis', methods=['GET', 'POST'])
-def upload_video():
+def upload_sample_video():
     global shooting_result
     shooting_result['attempts'] = 0
     shooting_result['made'] = 0
@@ -69,7 +95,7 @@ def upload_video():
         print("filepath", filepath)
         f.save(filepath)
         session['video_path'] = filepath
-        return render_template("shooting.html", result="from initial")
+        return render_template("shooting_analysis.html")
 
 @app.route('/video_feed')
 def video_feed():
@@ -81,7 +107,7 @@ def video_feed():
 
 @app.route("/result", methods=['GET', 'POST'])
 def result():
-    return render_template("result.html", shot=shooting_result['attempts'], made=shooting_result['made'], miss=shooting_result['miss'])
+    return render_template("result.html", attempts=shooting_result['attempts'], made=shooting_result['made'], miss=shooting_result['miss'])
 
 #disable caching
 @app.after_request
