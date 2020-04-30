@@ -107,7 +107,6 @@ def video_feed():
     stream = getVideoStream(video_path)
     return Response(stream,
                     mimetype='multipart/x-mixed-replace; boundary=frame')
-    return render_template("shooting.html", result="shit")
 
 @app.route("/result", methods=['GET', 'POST'])
 def result():
