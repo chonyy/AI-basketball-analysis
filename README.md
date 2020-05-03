@@ -50,7 +50,7 @@ This project is also hosted on [Heroku](https://ai-basketball-analysis.herokuapp
 
 ## Features
 
-This project has three main features, [shot analysis](shot-analysis), [shot detection](shot-detection), [detection API](detection-api).
+This project has three main features, [#shot analysis](shot-analysis), [#shot detection](shot-detection), [#detection API](detection-api).
 
 ### Shot analysis
 
