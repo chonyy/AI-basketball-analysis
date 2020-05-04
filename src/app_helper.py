@@ -22,8 +22,8 @@ def getVideoStream(video_path):
     height = cap.get(cv2.CAP_PROP_FRAME_HEIGHT)
     trace = np.full((int(height), int(width), 3), 255, np.uint8)
 
-    #objects to store detection status
     fig = plt.figure()
+    #objects to store detection status
     previous = {
         'ball': np.array([0, 0]), #x, y
         'hoop': np.array([0, 0, 0, 0]), #xmin, ymax, xmax, ymin
@@ -39,23 +39,22 @@ def getVideoStream(video_path):
     }
 
     skip_count = 0
-    with detection_graph.as_default():
-        with tf.Session(graph=detection_graph) as sess:
-            while True:
-                ret, img = cap.read()
-                skip_count += 1
-                if(skip_count == 2):
-                    skip_count = 0
-                    continue
-                if ret == False:
-                    break
-                detection, trace = detect_shot(img, trace, width, height, sess, image_tensor, boxes, scores, classes,
-                                          num_detections, previous, during_shooting, shot_result, fig)
+    with tf.Session(graph=detection_graph) as sess:
+        while True:
+            ret, img = cap.read()
+            skip_count += 1
+            if(skip_count == 2):
+                skip_count = 0
+                continue
+            if ret == False:
+                break
+            detection, trace = detect_shot(img, trace, width, height, sess, image_tensor, boxes, scores, classes,
+                                        num_detections, previous, during_shooting, shot_result, fig)
 
-                detection = cv2.resize(detection, (0, 0), fx=0.8, fy=0.8)
-                frame = cv2.imencode('.jpg', detection)[1].tobytes()
-                result = (b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
-                yield result
+            detection = cv2.resize(detection, (0, 0), fx=0.8, fy=0.8)
+            frame = cv2.imencode('.jpg', detection)[1].tobytes()
+            result = (b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+            yield result
 
     plt.title("Trajectory Fitting", figure=fig)
     plt.ylim(bottom=0, top=height)
