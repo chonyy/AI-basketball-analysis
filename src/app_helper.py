@@ -58,7 +58,7 @@ def getVideoStream(video_path):
                 yield result
 
     plt.title("Trajectory Fitting", figure=fig)
-    plt.ylim(bottom=0)
+    plt.ylim(bottom=0, top=height)
     trajectory_path = os.path.join(
         os.getcwd(), "static/detections/trajectory_fitting.jpg")
     fig.savefig(trajectory_path)

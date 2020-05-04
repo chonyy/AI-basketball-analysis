@@ -25,8 +25,14 @@ def trajectory_fit(balls, height, width, shotJudgement, fig):
         x.append(ball[0])
         y.append(height - ball[1])
 
-    params = curve_fit(fit_func, x, y)
-    [a, b, c] = params[0]
+    try:
+        params = curve_fit(fit_func, x, y)
+        [a, b, c] = params[0]   
+    except:
+        print("fiiting error")
+        a = 0
+        b = 0
+        c = 0
     x_pos = np.arange(0, width, 1)
     y_pos = []
     for i in range(len(x_pos)):
