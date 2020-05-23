@@ -160,12 +160,12 @@ def detect_shot(frame, trace, width, height, sess, image_tensor, boxes, scores, 
     # displaying openpose, joint angle and release angle
     frame = datum.cvOutputData
     cv2.putText(frame, 'Elbow: ' + str(elbowAngle) + ' deg',
-                (elbowCoord[0] + 65, elbowCoord[1]), cv2.FONT_HERSHEY_COMPLEX, 1.2, (102, 255, 0), 3)
+                (elbowCoord[0] + 65, elbowCoord[1]), cv2.FONT_HERSHEY_COMPLEX, 1.3, (102, 255, 0), 3)
     cv2.putText(frame, 'Knee: ' + str(kneeAngle) + ' deg',
-                (kneeCoord[0] + 65, kneeCoord[1]), cv2.FONT_HERSHEY_COMPLEX, 1.2, (102, 255, 0), 3)
+                (kneeCoord[0] + 65, kneeCoord[1]), cv2.FONT_HERSHEY_COMPLEX, 1.3, (102, 255, 0), 3)
     if(shot_result['release_displayFrames']):
         cv2.putText(frame, 'Release: ' + str(during_shooting['release_angle_list'][-1]) + ' deg',
-                    (during_shooting['release_point'][0] - 80, during_shooting['release_point'][1] + 80), cv2.FONT_HERSHEY_COMPLEX, 1.2, (102, 255, 255), 3)
+                    (during_shooting['release_point'][0] - 80, during_shooting['release_point'][1] + 80), cv2.FONT_HERSHEY_COMPLEX, 1.3, (102, 255, 255), 3)
 
     for i, box in enumerate(boxes[0]):
         if (scores[0][i] > 0.5):
@@ -201,6 +201,8 @@ def detect_shot(frame, trace, width, height, sess, image_tensor, boxes, scores, 
                         first_shooting_point = during_shooting['balls_during_shooting'][0]
                         release_angle = calculateAngle(np.array(during_shooting['balls_during_shooting'][1]), np.array(
                             first_shooting_point), np.array([first_shooting_point[0] + 1, first_shooting_point[1]]))
+                        if(release_angle > 90):
+                            release_angle = 180 - release_angle
                         during_shooting['release_angle_list'].append(
                             release_angle)
                         during_shooting['release_point'] = first_shooting_point
@@ -208,10 +210,10 @@ def detect_shot(frame, trace, width, height, sess, image_tensor, boxes, scores, 
                         print("release angle:", release_angle)
 
                     #draw purple circle
-                    cv2.circle(img=frame, center=(xCoor, yCoor), radius=10,
-                               color=(235, 103, 193), thickness=-1)
-                    cv2.circle(img=trace, center=(xCoor, yCoor), radius=10,
-                               color=(235, 103, 193), thickness=-1)
+                    cv2.circle(img=frame, center=(xCoor, yCoor), radius=7,
+                               color=(235, 103, 193), thickness=3)
+                    cv2.circle(img=trace, center=(xCoor, yCoor), radius=7,
+                               color=(235, 103, 193), thickness=3)
 
                 # Not shooting
                 elif(ymin >= (previous['hoop_height'] - 30) and (distance([xCoor, yCoor], previous['ball']) < 100)):

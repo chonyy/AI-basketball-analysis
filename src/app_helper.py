@@ -55,7 +55,7 @@ def getVideoStream(video_path):
 
     config = tf.ConfigProto()
     config.gpu_options.allow_growth = True
-    config.gpu_options.per_process_gpu_memory_fraction = 0.38
+    config.gpu_options.per_process_gpu_memory_fraction = 0.36
 
     skip_count = 0
     with tf.Session(graph=detection_graph, config=config) as sess:
@@ -64,13 +64,13 @@ def getVideoStream(video_path):
             if ret == False:
                 break
             skip_count += 1
-            if(skip_count < 2):
+            if(skip_count < 4):
                 continue
             skip_count = 0
             detection, trace = detect_shot(img, trace, width, height, sess, image_tensor, boxes, scores, classes,
                                         num_detections, previous, during_shooting, shot_result, fig, datum, opWrapper, shooting_pose)
 
-            detection = cv2.resize(detection, (0, 0), fx=0.8, fy=0.8)
+            detection = cv2.resize(detection, (0, 0), fx=0.9, fy=0.9)
             frame = cv2.imencode('.jpg', detection)[1].tobytes()
             result = (b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
             yield result
@@ -80,7 +80,7 @@ def getVideoStream(video_path):
     shooting_result['avg_elbow_angle'] = round(mean(shooting_pose['elbow_angle_list']), 2)
     shooting_result['avg_knee_angle'] = round(mean(shooting_pose['knee_angle_list']), 2)
     shooting_result['avg_release_angle'] = round(mean(during_shooting['release_angle_list']), 2)
-    shooting_result['avg_ballInHand_time'] = round(mean(shooting_pose['ballInHand_frames_list']) * (2 / fps), 2)
+    shooting_result['avg_ballInHand_time'] = round(mean(shooting_pose['ballInHand_frames_list']) * (4 / fps), 2)
 
     print("avg", shooting_result['avg_elbow_angle'])
     print("avg", shooting_result['avg_knee_angle'])

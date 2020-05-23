@@ -9,27 +9,63 @@
                 <div class="stat-name">Shot Counting</div>
                 <div class="underline"></div>
             </div>
-            <div class="stat-container small-stat">
+            <div class="result-stat-container">
                 <div class="stat-item">
                     <div class="statname-container">
                         <div class="stat-name padding-right">Attempts</div>
                         <div class="underline video-underline"></div>
                     </div>
-                    <div class="stat-num" stat-day>{{ attempts }}</div>
+                    <div class="stat-num" stat-day>{{ shooting_result.attempts }}</div>
                 </div>
                 <div class="stat-item">
                     <div class="statname-container">
                         <div class="stat-name padding-right">Miss</div>
                         <div class="underline video-underline"></div>
                     </div>
-                    <div class="stat-num" stat-message>{{ miss }}</div>
+                    <div class="stat-num" stat-message>{{ shooting_result.miss }}</div>
                 </div>
                 <div class="stat-item">
                     <div class="statname-container">
                         <div class="stat-name padding-right">Score</div>
                         <div class="underline video-underline"></div>
                     </div>
-                    <div class="stat-num" stat-call>{{ made }}</div>
+                    <div class="stat-num" stat-call>{{ shooting_result.made }}</div>
+                </div>
+            </div>
+        </div>
+        <div class="shot-counting">
+            <div class="image-description">
+                <div class="stat-name">Pose Analysis (angle)</div>
+                <div class="underline"></div>
+            </div>
+            <div class="result-stat-container">
+                <div class="stat-item">
+                    <div class="statname-container">
+                        <div class="stat-name padding-right">Elbow</div>
+                        <div class="underline video-underline"></div>
+                    </div>
+                    <div class="stat-num" stat-day>{{ shooting_result.avg_elbow_angle}}°</div>
+                </div>
+                <div class="stat-item">
+                    <div class="statname-container">
+                        <div class="stat-name padding-right">Knee</div>
+                        <div class="underline video-underline"></div>
+                    </div>
+                    <div class="stat-num" stat-message>{{ shooting_result.avg_knee_angle }}°</div>
+                </div>
+                <div class="stat-item">
+                    <div class="statname-container">
+                        <div class="stat-name padding-right">Release</div>
+                        <div class="underline video-underline"></div>
+                    </div>
+                    <div class="stat-num" stat-call>{{ shooting_result.avg_release_angle }}°</div>
+                </div>
+                <div class="stat-item">
+                    <div class="statname-container">
+                        <div class="stat-name padding-right">Release Time</div>
+                        <div class="underline video-underline"></div>
+                    </div>
+                    <div class="stat-num" stat-call>{{ shooting_result.avg_ballInHand_time }} sec</div>
                 </div>
             </div>
         </div>

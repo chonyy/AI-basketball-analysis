@@ -141,6 +141,15 @@ nav .navbar-nav li a {
     border-radius: 10px;
 }
 
+.result-stat-container {
+    padding-bottom: 1vw;
+    display: flex;
+    flex-direction: row;
+    background-color: #f1bbba;
+    border: 5px solid #7c7877;
+    border-radius: 10px;
+}
+
 .stat-row {
     display: flex;
     flex-direction: row;
@@ -151,6 +160,7 @@ nav .navbar-nav li a {
 .stat-item {
     display: flex;
     flex-direction: column;
+    padding: 0 2vw;
     margin: 0;
 }
 
@@ -168,7 +178,7 @@ nav .navbar-nav li a {
 }
 
 .underline {
-    width: 30%;
+    width: 35%;
     height: 0.6vw;
     background-color: #eb9f9f;
     margin-top: -0.7vw;
@@ -320,8 +330,9 @@ button {
 
 .shot-container {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
+    flex-direction: row;
 }
 
 .trajectory-underline {

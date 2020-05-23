@@ -110,7 +110,7 @@ def video_feed():
 
 @app.route("/result", methods=['GET', 'POST'])
 def result():
-    return render_template("result.html", attempts=shooting_result['attempts'], made=shooting_result['made'], miss=shooting_result['miss'])
+    return render_template("result.html", shooting_result=shooting_result)
 
 #disable caching
 @app.after_request
