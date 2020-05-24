@@ -12,9 +12,11 @@
     <a target="_blank" href="http://makeapullrequest.com" title="PRs Welcome"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg"></a>
 </p>
 
-> 🏀 Analyze basketball shots with machine learning!
+> 🏀 Analyze basketball shots and shooting pose with machine learning!
 
 This is an artificial intelligence application built on the concept of **object detection**. Analyze basketball shots by digging into the data collected from object detection. We can get the result by simply uploading files to the web App, or submitting a **POST request** to the API. Please check the [features](#features) below. There are more features coming up! Feel free to follow.
+
+All the data for the shooting pose analysis is calculated by implementing [OpenPose](https://github.com/CMU-Perceptual-Computing-Lab/openpose).
 
 ## Getting Started
 
@@ -54,6 +56,8 @@ This project has three main features, [shot analysis](#shot-analysis), [shot det
 
 ### Shot analysis
 
+#### Shot counting
+
 <p align=center>
     <img src="./static/img/analysis_result.PNG">
 </p>
@@ -65,6 +69,19 @@ Detection keypoints in different colors have different meanings listed below:
 * **Green:** Shot went in
 * **Red:** Miss
 
+#### Pose analysis
+
+<p align=center>
+    <img src="./static/img/curry_pose.gif">
+</p>
+
+Implementing [OpenPose](https://github.com/CMU-Perceptual-Computing-Lab/openpose) to calculate the angle of elbow and knee during shooting.
+
+<p align=center>
+    <img src="https://2.bp.blogspot.com/_xaY-4TqFF6s/SgDgFQeGI6I/AAAAAAAAANk/I83JeZ89MOU/w1200-h630-p-k-no-nu/Basketball+Free+Throw+Side+On1-031509.jpg">
+</p>
+
+Release angle and release time are calculated by all the data collected from shot analysis and pose analysis. Please note that there will be a relatively big **error** for the release time, since it was calculated as the total time when the ball is in hand.
 
 ### Shot detection
 
