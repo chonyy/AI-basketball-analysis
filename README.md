@@ -81,7 +81,7 @@ Implementing [OpenPose](https://github.com/CMU-Perceptual-Computing-Lab/openpose
     <img src="https://2.bp.blogspot.com/_xaY-4TqFF6s/SgDgFQeGI6I/AAAAAAAAANk/I83JeZ89MOU/w1200-h630-p-k-no-nu/Basketball+Free+Throw+Side+On1-031509.jpg">
 </p>
 
-Release angle and release time are calculated by all the data collected from shot analysis and pose analysis. Please note that there will be a relatively big **error** for the release time, since it was calculated as the total time when the ball is in hand.
+Release angle and release time are calculated by all the data collected from shot analysis and pose analysis. Please note that there will be a relatively big **error** for the release time since it was calculated as the total time when the ball is in hand.
 
 ### Shot detection
 
