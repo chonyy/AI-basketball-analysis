@@ -1,5 +1,5 @@
 <p align=center>
-    <img src="./static/img/analysis.gif" width="960" height="270">
+    <img src="./static/img/analysis.gif" width="960" height="300">
 </p>
 
 <p align=center>
