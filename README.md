@@ -72,7 +72,7 @@ Detection keypoints in different colors have different meanings listed below:
 #### Pose analysis
 
 <p align=center>
-    <img src="./static/img/curry_pose.gif">
+    <img src="./static/img/curry_pose.gif" width="800" height="450">
 </p>
 
 Implementing [OpenPose](https://github.com/CMU-Perceptual-Computing-Lab/openpose) to calculate the angle of elbow and knee during shooting.
