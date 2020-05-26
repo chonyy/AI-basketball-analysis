@@ -62,26 +62,19 @@ def fit_func(x, a, b, c):
 
 
 def trajectory_fit(balls, height, width, shotJudgement, fig):
-    x = []
-    y = []
-    for ball in balls:
-        x.append(ball[0])
-        y.append(height - ball[1])
+    x = [ball[0] for ball in balls]
+    y = [height - ball[1] for ball in balls]
 
     try:
         params = curve_fit(fit_func, x, y)
         [a, b, c] = params[0]   
     except:
-        print("fiiting error")
+        print("fitting error")
         a = 0
         b = 0
         c = 0
     x_pos = np.arange(0, width, 1)
-    y_pos = []
-    for i in range(len(x_pos)):
-        x_val = x_pos[i]
-        y_val = (a * (x_val ** 2)) + (b * x_val) + c
-        y_pos.append(y_val)
+    y_pos = [(a * (x_val ** 2)) + (b * x_val) + c for x_val in x_pos]
 
     if(shotJudgement == "MISS"):
         plt.plot(x, y, 'ro', figure=fig)
