@@ -38,7 +38,9 @@ def openpose_init():
             sys.path.append(os.path.dirname(os.getcwd()))
             import OpenPose.Release.pyopenpose as op
         else:
-            sys.path.append('../OpenPose/openpose')
+            path = os.path.join(os.getcwd(), 'OpenPose/openpose')
+            print(path)
+            sys.path.append(path)
             import pyopenpose as op
     except ImportError as e:
         print('Error: OpenPose library could not be found. Did you enable `BUILD_PYTHON` in CMake and have this Python script in the right folder?')
