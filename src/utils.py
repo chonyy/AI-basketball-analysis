@@ -301,10 +301,12 @@ def detect_image(img, response):
         (boxes, scores, classes, num_detections) = sess.run(
             [boxes, scores, classes, num_detections],
             feed_dict={image_tensor: img_expanded})
+        valid_detections = 0
 
         for i, box in enumerate(boxes[0]):
             # print("detect")
             if (scores[0][i] > 0.5):
+                valid_detections += 1
                 ymin = int((box[0] * height))
                 xmin = int((box[1] * width))
                 ymax = int((box[2] * height))
@@ -339,6 +341,18 @@ def detect_image(img, response):
                             'box_boundary': {'x_min': xmin, 'x_max': xmax, 'y_min': ymin, 'y_max': ymax}
                         }
                     })
+        
+        if(valid_detections < 2):
+            for i in range(2):
+                response.append({
+                    'class': 'Not Found',
+                    'detection_detail': {
+                        'confidence': 0.0,
+                        'center_coordinate': {'x': 0, 'y': 0},
+                        'box_boundary': {'x_min': 0, 'x_max': 0, 'y_min': 0, 'y_max': 0}
+                    }
+                })
+            
     return img
 
 def detect_API(response, img):
