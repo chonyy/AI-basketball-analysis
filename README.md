@@ -38,6 +38,8 @@ Before running the project, we have to install all the dependencies from require
 pip install -r requirements.txt
 ```
 
+Please note that you need a GPU with proper CUDA setup to run the video analysis, since a CUDA device is required to run OpenPose.
+
 ### Hosting
 
 Last, get the project hosted on your local machine with a single command.
@@ -49,6 +51,8 @@ python app.py
 #### Alternatives
 
 This project is also hosted on [Heroku](https://ai-basketball-analysis.herokuapp.com/). However, the heavy computation of TensorFlow may cause Timeout error and crash the app (especially for video analysis). Therefore, hosting the project on your local machine is more preferable.
+
+Please note that the shooting pose analysis won't be running on the Heroku hosted website, since a CUDA device is required to run OpenPose.
 
 ## Features
 
