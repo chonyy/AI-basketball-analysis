@@ -16,7 +16,7 @@
 
 This is an artificial intelligence application built on the concept of **object detection**. Analyze basketball shots by digging into the data collected from object detection. We can get the result by simply uploading files to the web App, or submitting a **POST request** to the API. Please check the [features](#features) below. There are more features coming up! Feel free to follow.
 
-All the data for the shooting pose analysis is calculated by implementing [OpenPose](https://github.com/CMU-Perceptual-Computing-Lab/openpose). Please note that this is an implementation for noncommercial research use only. Please read the [LICENSE](https://github.com/chonyy/AI-basketball-analysis/blob/master/LICENSE), which is exaclty same as the [CMU's OpenPose License](https://github.com/CMU-Perceptual-Computing-Lab/openpose/blob/master/LICENSE).
+All the data for the shooting pose analysis is calculated by implementing [OpenPose](https://github.com/CMU-Perceptual-Computing-Lab/openpose). Please note that this is an implementation only for noncommercial research use only. Please read the [LICENSE](https://github.com/chonyy/AI-basketball-analysis/blob/master/LICENSE), which is exaclty same as the [CMU's OpenPose License](https://github.com/CMU-Perceptual-Computing-Lab/openpose/blob/master/LICENSE).
 
 ## Getting Started
 
