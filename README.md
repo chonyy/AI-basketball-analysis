@@ -58,7 +58,7 @@ Please note that the shooting pose analysis won't be running on the Heroku hoste
 
 This project has three main features, [shot analysis](#shot-analysis), [shot detection](#shot-detection), [detection API](#detection-api).
 
-### Shot analysis
+### Shot and Pose analysis
 
 #### Shot counting
 
