@@ -49,7 +49,7 @@ python app.py
 ```
 
 <p align=center>
-    <img src="./static/img/index_page.PNG" width="459.25" height="232.25">
+    <img src="./static/img/index_page.PNG" width="551.1" height="278.7">
 </p>
 
 #### Alternatives
