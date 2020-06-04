@@ -43,7 +43,7 @@ def openpose_init():
             sys.path.append(path)
             import pyopenpose as op
     except ImportError as e:
-        print('Error: OpenPose library could not be found. Did you enable `BUILD_PYTHON` in CMake and have this Python script in the right folder?')
+        print("Something went wrong when importing OpenPose")
         raise e
 
     # Custom Params (refer to include/openpose/flags.hpp for more parameters)

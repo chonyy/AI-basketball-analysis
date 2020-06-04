@@ -48,6 +48,10 @@ Last, get the project hosted on your local machine with a single command.
 python app.py
 ```
 
+<p align=center>
+    <img src="./static/img/index_page.PNG">
+</p>
+
 #### Alternatives
 
 This project is also hosted on [Heroku](https://ai-basketball-analysis.herokuapp.com/). However, the heavy computation of TensorFlow may cause Timeout error and crash the app (especially for video analysis). Therefore, hosting the project on your local machine is more preferable.
