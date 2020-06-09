@@ -58,6 +58,12 @@ This project is also hosted on [Heroku](https://ai-basketball-analysis.herokuapp
 
 Please note that the shooting pose analysis won't be running on the Heroku hosted website, since a CUDA device is required to run OpenPose.
 
+## Project Structure
+
+<p align=center>
+    <img src="./static/img/structure.png">
+</p>
+
 ## Features
 
 This project has three main features, [shot analysis](#shot-analysis), [shot detection](#shot-detection), [detection API](#detection-api).
