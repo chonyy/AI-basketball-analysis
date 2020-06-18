@@ -221,6 +221,10 @@ def detect_shot(frame, trace, width, height, sess, image_tensor, boxes, scores, 
                             shot_result['judgement'] = "SCORE"
                             print("SCORE")
                             # draw green trace when miss
+                            points = np.asarray(
+                                during_shooting['balls_during_shooting'], dtype=np.int32)
+                            cv2.polylines(trace, [points], False, color=(
+                                82, 168, 50), thickness=2, lineType=cv2.LINE_AA)
                             for ballCoor in during_shooting['balls_during_shooting']:
                                 cv2.circle(img=trace, center=(ballCoor[0], ballCoor[1]), radius=10,
                                            color=(82, 168, 50), thickness=-1)
@@ -231,6 +235,10 @@ def detect_shot(frame, trace, width, height, sess, image_tensor, boxes, scores, 
                             shot_result['judgement'] = "MISS"
                             print("miss")
                             # draw red trace when miss
+                            points = np.asarray(
+                                during_shooting['balls_during_shooting'], dtype=np.int32)
+                            cv2.polylines(trace, [points], color=(
+                                0, 0, 255), isClosed=False, thickness=2, lineType=cv2.LINE_AA)
                             for ballCoor in during_shooting['balls_during_shooting']:
                                 cv2.circle(img=trace, center=(ballCoor[0], ballCoor[1]), radius=10,
                                            color=(0, 0, 255), thickness=-1)
