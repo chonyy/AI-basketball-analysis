@@ -5,7 +5,7 @@ tensorflow==1.15.2
 opencv-python-headless
 werkzeug==0.16.0
 matplotlib==3.1.1
-gunicorn==19.0.0
+gunicorn==19.5.0
 Pillow==6.0.0
 image
 scipy
