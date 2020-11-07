@@ -56,6 +56,14 @@ python app.py
 
 #### Alternatives
 
+##### Google Colab
+
+[<img src="https://colab.research.google.com/assets/colab-badge.svg" align="center">](https://colab.research.google.com/github/hardik0/AI-basketball-analysis-on-google-colab/blob/master/AI_basketball_analysis_google_colab.ipynb)
+
+Thanks to [hardik0](https://github.com/hardik0/AI-basketball-analysis-on-google-colab). Now we can play around with it without a GPU machine!
+
+##### Heroku
+
 This project is also hosted on [Heroku](https://ai-basketball-analysis.herokuapp.com/). However, the heavy computation of TensorFlow may cause Timeout error and crash the app (especially for video analysis). Therefore, hosting the project on your local machine is more preferable.
 
 Please note that the shooting pose analysis won't be running on the Heroku hosted website, since a CUDA device is required to run OpenPose.
