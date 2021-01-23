@@ -133,7 +133,7 @@ The object detection model is trained with the [Faster R-CNN model architecture]
 
 
 ## Future plans
-[] Change the model to a more efficient YOLOv4
-[] Implement SORT Tracking algorithm to filter out false detection
-[] Improve the visual effect
-[] Improve the efficiency, making it executable on web app services.
+- [ ] Change the model to a more efficient YOLOv4
+- [ ] Implement SORT Tracking algorithm to filter out false detection
+- [ ] Improve the visual effect
+- [ ] Improve the efficiency, making it executable on web app services.
