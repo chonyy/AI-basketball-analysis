@@ -127,10 +127,25 @@ def detect_shot(frame, trace, width, height, sess, image_tensor, boxes, scores, 
     if(shooting_pose['ball_in_hand']):
         shooting_pose['ballInHand_frames'] += 1
         # print("ball in hand")
-
+    
     # getting openpose keypoints
     datum.cvInputData = frame
-    opWrapper.emplaceAndPop([datum])
+    
+    try:
+        if platform == "win32":
+            sys.path.append(os.path.dirname(os.getcwd()))
+            import OpenPose.Release.pyopenpose as op
+        else:
+            path = os.path.join(os.getcwd(), 'OpenPose/openpose')
+            print(path)
+            sys.path.append(path)
+            import pyopenpose as op
+    except ImportError as e:
+        print("Something went wrong when importing OpenPose")
+        raise e
+
+    opWrapper.emplaceAndPop(op.VectorDatum([datum]))
+    #opWrapper.emplaceAndPop([datum])
     try:
         headX, headY, headConf = datum.poseKeypoints[0][0]
         handX, handY, handConf = datum.poseKeypoints[0][4]
