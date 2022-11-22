@@ -6,6 +6,6 @@ opencv-python-headless
 werkzeug==0.16.0
 matplotlib==3.1.1
 gunicorn==19.5.0
-Pillow==6.0.0
+Pillow==9.3.0
 image
 scipy
