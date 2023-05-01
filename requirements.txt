@@ -1,5 +1,5 @@
 -i https://pypi.org/simple
-flask==2.0.0
+flask==2.3.2
 numpy==1.17.4
 tensorflow==1.15.2
 opencv-python-headless
