@@ -1,8 +1,10 @@
-<p align=center>
+# AI Basketball Analysis
+
+<p align="center">
     <img src="./static/img/analysis.gif" width="960" height="300">
 </p>
 
-<p align=center>
+<p align="center">
     <a target="_blank" href="https://travis-ci.com/chonyy/AI-basketball-analysis" title="Build Status"><img src="https://travis-ci.com/chonyy/AI-basketball-analysis.svg?branch=master"></a>
     <a target="_blank" href="#" title="language count"><img src="https://img.shields.io/github/languages/count/chonyy/AI-basketball-analysis"></a>
     <a target="_blank" href="#" title="top language"><img src="https://img.shields.io/github/languages/top/chonyy/AI-basketball-analysis?color=orange"></a>
@@ -12,128 +14,136 @@
     <a target="_blank" href="http://makeapullrequest.com" title="PRs Welcome"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg"></a>
 </p>
 
-> 🏀 Analyze basketball shots and shooting pose with machine learning!
+> 🏀 **Analyze basketball shots and shooting pose with machine learning!**
 
-This is an artificial intelligence application built on the concept of **object detection**. Analyze basketball shots by digging into the data collected from object detection. We can get the result by simply uploading files to the web App, or submitting a **POST request** to the API. Please check the [features](#features) below. There are more features coming up! Feel free to follow.
+_This is an AI-powered application focused on **object detection** to analyze basketball shots. The app allows users to upload basketball videos for analysis or submit **POST requests** to an API. Results include detailed shot and pose analysis based on object detection data. The project utilizes **OpenPose** to compute body keypoints and other metrics._
 
-All the data for the shooting pose analysis is calculated by implementing [OpenPose](https://github.com/CMU-Perceptual-Computing-Lab/openpose). Please note that this is an implementation only for noncommercial research use only. Please read the [LICENSE](https://github.com/chonyy/AI-basketball-analysis/blob/master/LICENSE), which is exaclty same as the [CMU's OpenPose License](https://github.com/CMU-Perceptual-Computing-Lab/openpose/blob/master/LICENSE).
+---
 
-If your are interested in the concept of human pose estimation, I have written a [research paper **summary**](https://towardsdatascience.com/openpose-research-paper-summary-realtime-multi-person-2d-pose-estimation-3563a4d7e66) of OpenPose. Check it out!
+## 📖 _Project Overview_
 
-## Getting Started
+_AI Basketball Analysis leverages artificial intelligence to break down basketball shots by detecting player movements, shot accuracy, and pose data. It uses the popular [OpenPose](https://github.com/CMU-Perceptual-Computing-Lab/openpose) framework for human pose estimation. Whether you're a developer or sports analyst, this project helps explore how AI can automate and enhance basketball analysis._
 
-These instructions will get you a copy of the project up and running on your local machine.
+> **Important**: _This project is for **noncommercial research use only**, as it uses OpenPose's license. Please review the [LICENSE](https://github.com/chonyy/AI-basketball-analysis/blob/master/LICENSE) for details._
 
-### Get a copy
+_If you're new to human pose estimation, check out this [summary article](https://towardsdatascience.com/openpose-research-paper-summary-realtime-multi-person-2d-pose-estimation-3563a4d7e66) that breaks down OpenPose's key concepts._
 
-Get a copy of this project by simply running the git clone command.
+---
 
-``` git
+## 🚀 _Getting Started_
+
+### 1. **Clone the Repository**
+_To get a copy of the project, run the following command:_
+```bash
 git clone https://github.com/chonyy/AI-basketball-analysis.git
 ```
 
-### Prerequisites
-
-Before running the project, we have to install all the dependencies from requirements.txt
-
-``` pip
+### 2. **Install Dependencies**
+_Before running the project, ensure all necessary dependencies are installed by running:_
+```bash
 pip install -r requirements.txt
 ```
 
-Please note that you need a GPU with proper CUDA setup to run the video analysis, since a CUDA device is required to run OpenPose.
+> **Note**: _This project requires a **GPU with CUDA support** to run OpenPose efficiently, especially for video analysis._
 
-### Hosting
-
-Last, get the project hosted on your local machine with a single command.
-
-``` python
+### 3. **Run the Application**
+_Once everything is set up, you can host the project locally with a simple command:_
+```bash
 python app.py
 ```
 
-<p align=center>
-    <img src="./static/img/index_page.PNG" width="551.1" height="278.7">
-</p>
+_This will launch the application locally, where you can upload basketball videos or images for analysis._
 
-#### Alternatives
+### _Hosting Options_
+_If you'd prefer not to run the project locally, you can try these alternatives:_
 
-##### Google Colab
+#### **Google Colab** _(No GPU required!)_
+_Thanks to [hardik0](https://github.com/hardik0/AI-basketball-analysis-on-google-colab), you can experiment with the AI Basketball Analysis in **Google Colab** without needing your own GPU:_
+[![Google Colab Badge](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/hardik0/AI-basketball-analysis-on-google-colab/blob/master/AI_basketball_analysis_google_colab.ipynb)
 
-[<img src="https://colab.research.google.com/assets/colab-badge.svg" align="center">](https://colab.research.google.com/github/hardik0/AI-basketball-analysis-on-google-colab/blob/master/AI_basketball_analysis_google_colab.ipynb)
+#### **Heroku Hosting**
+_This project is also available on [Heroku](https://ai-basketball-analysis.herokuapp.com/), though note that heavy computations like TensorFlow may cause timeout errors on Heroku due to limited resources. For best performance, it's recommended to run the app locally._
 
-Thanks to [hardik0](https://github.com/hardik0/AI-basketball-analysis-on-google-colab). Now we can play around with it without a GPU machine!
+---
 
-##### Heroku
+## 🛠️ _Project Structure_
 
-This project is also hosted on [Heroku](https://ai-basketball-analysis.herokuapp.com/). However, the heavy computation of TensorFlow may cause Timeout error and crash the app (especially for video analysis). Therefore, hosting the project on your local machine is more preferable.
-
-Please note that the shooting pose analysis won't be running on the Heroku hosted website, since a CUDA device is required to run OpenPose.
-
-## Project Structure
-
-<p align=center>
+_Here’s a breakdown of the key components of the project:_
+<p align="center">
     <img src="./static/img/structure.png">
 </p>
 
-## Features
+- **app.py**: _Main file to run the web application._
+- **/static**: _Contains all static assets like images, CSS, and JavaScript._
+- **/models**: _Directory containing pre-trained models for object detection._
+- **/scripts**: _Utility scripts for data processing and model training._
 
-This project has three main features, [shot analysis](#shot-analysis), [shot detection](#shot-detection), [detection API](#detection-api).
+---
 
-### Shot and Pose analysis
+## 🔍 _Features_
 
-#### Shot counting
+### 1. **Shot and Pose Analysis**
 
-<p align=center>
+#### **Shot Counting**
+<p align="center">
     <img src="./static/img/analysis_result.PNG">
 </p>
+_Analyze basketball shots from the input video, determining successful and missed shots. Keypoints in different colors represent:_
+- **Blue**: _Detected basketball in normal status_
+- **Purple**: _Undetermined shot_
+- **Green**: _Successful shot_
+- **Red**: _Missed shot_
 
-Counting shooting attempts and missing, scoring shots from the input video.
-Detection keypoints in different colors have different meanings listed below:
-* **Blue:** Detected basketball in normal status
-* **Purple**: Undetermined shot
-* **Green:** Shot went in
-* **Red:** Miss
-
-#### Pose analysis
-
-<p align=center>
+#### **Pose Analysis**
+<p align="center">
     <img src="./static/img/curry_pose.gif" width="800" height="450">
 </p>
+_Using [OpenPose](https://github.com/CMU-Perceptual-Computing-Lab/openpose), the project analyzes the player's elbow and knee angles during a shot, helping determine release angles and times._
 
-Implementing [OpenPose](https://github.com/CMU-Perceptual-Computing-Lab/openpose) to calculate the angle of elbow and knee during shooting.
-
-<p align=center>
-    <img src="https://2.bp.blogspot.com/_xaY-4TqFF6s/SgDgFQeGI6I/AAAAAAAAANk/I83JeZ89MOU/w1200-h630-p-k-no-nu/Basketball+Free+Throw+Side+On1-031509.jpg">
-</p>
-
-Release angle and release time are calculated by all the data collected from shot analysis and pose analysis. Please note that there will be a relatively big **error** for the release time since it was calculated as the total time when the ball is in hand.
-
-### Shot detection
-
-<p align=center>
+### 2. **Shot Detection**
+<p align="center">
     <img src="./static/img/detection.PNG">
 </p>
+_This feature visualizes shot detection, showing confidence levels and coordinates for each detection._
 
-Detection will be shown on the image. The confidence and the coordinate of the detection will be listed below.
+### 3. **Detection API**
+_The project includes a REST API for detection, allowing you to submit images via a **POST** request and receive a JSON response with detected keypoints and other data._
 
-### Detection API
+```bash
+POST /detection_json
+```
+- **KEY**: _image_
+- **VALUE**: _Input image_
 
-<p align=center>
+<p align="center">
     <img src="./static/img/API.PNG" width="861.6" height="649.6">
 </p>
 
-Get the JSON response by submitting a **POST** request to (./detection_json) with "image" as KEY and input image as VALUE.
+### 4. **Detection Model**
+_The model is based on the **Faster R-CNN** architecture, trained on the **COCO dataset**. For more details, refer to the [TensorFlow Model Zoo](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md#coco-trained-models)._
 
-## Detection model
-
-<p align=center>
+<p align="center">
     <img src="https://jkjung-avt.github.io/assets/2018-03-30-making-frcn-faster/FRCN_architecture.png" width="558" height="560.5">
 </p>
 
-The object detection model is trained with the [Faster R-CNN model architecture](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md#coco-trained-models), which includes pretrained weight on COCO dataset. Taking the configuration from the model architecture and train it on my own dataset.
+---
 
+## 🔧 _Future Plans_
 
-## Future plans
-- [ ] Change the model to a more efficient YOLOv4
-- [ ] Implement SORT Tracking algorithm to filter out false detection
-- [ ] Improve the visual effect
-- [ ] Improve the efficiency, making it executable on web app services.
+- [ ] _Transition the model to YOLOv4 for better performance._
+- [ ] _Implement SORT tracking algorithm to filter false detections._
+- [ ] _Improve visualization features for clearer results._
+- [ ] _Optimize efficiency for better web app integration._
+
+---
+
+## 🤝 _Contributing_
+
+_We welcome contributions from the community! Here’s how you can get involved:_
+1. _**Fork the repository**_
+2. _**Create a branch**: `git checkout -b feature/your-feature-name`_
+3. _**Commit your changes**: `git commit -m 'Add some feature'`_
+4. _**Push to the branch**: `git push origin feature/your-feature-name`_
+5. _**Open a Pull Request**_
+
+_For more information on contributing, visit [Make A Pull Request](http://makeapullrequest.com).
