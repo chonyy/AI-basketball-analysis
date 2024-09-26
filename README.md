@@ -88,7 +88,9 @@ _Here’s a breakdown of the key components of the project:_
 <p align="center">
     <img src="./static/img/analysis_result.PNG">
 </p>
-_Analyze basketball shots from the input video, determining successful and missed shots. Keypoints in different colors represent:_
+
+Analyze basketball shots from the input video, determining successful and missed shots. Keypoints in different colors represent:
+
 - **Blue**: _Detected basketball in normal status_
 - **Purple**: _Undetermined shot_
 - **Green**: _Successful shot_
@@ -98,15 +100,18 @@ _Analyze basketball shots from the input video, determining successful and misse
 <p align="center">
     <img src="./static/img/curry_pose.gif" width="800" height="450">
 </p>
-_Using [OpenPose](https://github.com/CMU-Perceptual-Computing-Lab/openpose), the project analyzes the player's elbow and knee angles during a shot, helping determine release angles and times._
+
+Using [OpenPose](https://github.com/CMU-Perceptual-Computing-Lab/openpose), the project analyzes the player's elbow and knee angles during a shot, helping determine release angles and times.
 
 ### 2. **Shot Detection**
 <p align="center">
     <img src="./static/img/detection.PNG">
 </p>
-_This feature visualizes shot detection, showing confidence levels and coordinates for each detection._
+
+This feature visualizes shot detection, showing confidence levels and coordinates for each detection.
 
 ### 3. **Detection API**
+
 _The project includes a REST API for detection, allowing you to submit images via a **POST** request and receive a JSON response with detected keypoints and other data._
 
 ```bash
@@ -146,4 +151,4 @@ _We welcome contributions from the community! Here’s how you can get involved:
 4. _**Push to the branch**: `git push origin feature/your-feature-name`_
 5. _**Open a Pull Request**_
 
-_For more information on contributing, visit [Make A Pull Request](http://makeapullrequest.com).
+For more information on contributing, visit [Make A Pull Request](http://makeapullrequest.com).
